@@ -508,9 +508,10 @@ sub save($$$$) {
 
     if (defined $host->{'dbservice'}) {
         $hostkey = "$host->{'dbservice'}";
-    }
-    else {
+    } elsif (defined $host->{'host'}) {
         $hostkey = "$host->{'host'}$host->{'port'}";
+    } else {
+	$hostkey = "localhost/default"
     }
 
     die "File «${storage}» not recognized as a check_pgactivity status file.\n\n"
@@ -541,9 +542,10 @@ sub load($$$) {
 
     if (defined $host->{'dbservice'}) {
         $hostkey = "$host->{'dbservice'}";
-    }
-    else {
+    } elsif (defined $host->{'host'}) {
         $hostkey = "$host->{'host'}$host->{'port'}";
+    } else {
+	$hostkey = "localhost/default"
     }
 
     return undef unless -r $storage;
