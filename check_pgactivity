@@ -503,6 +503,7 @@ sub is_storable($) {
 #
 # Parameter: host structure ref that holds the "hsot" and "port" parameters
 sub find_hostkey($) {
+    my $hostkey;
     my $host = shift;
     if (defined $host->{'dbservice'}) {
         $hostkey = "$host->{'dbservice'}";
